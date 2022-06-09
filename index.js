@@ -1,26 +1,33 @@
 import { file } from './lib/file.js';
 
-const userMaryte = {
-    name: "tevs",
-    age: 87,
-    isMarried: false,
-}
+// IIFE - ifis
+(async () => {
 
-const createStatus = await file.create('asd', 'betkas.txt', userMaryte)
+    const readStatus1 = await file.read('users', 'maryte.json');
+    console.log('Read:', readStatus1);
 
-const readStatus = await file.read('users', 'petras.json');
-console.log(readStatus);
+    const user = {
+        name: 'maryte',
+        age: 87,
+        isMarried: false,
+    }
+    const createStatus = await file.create('users', 'maryte.json', user);
+    console.log('Create:', createStatus);
 
-// console.log(file);
+    const readStatus2 = await file.read('users', 'maryte.json');
+    console.log('Read:', readStatus2);
 
-// const user = {
-//     name: 'Petras',
-//     age: 99,
-//     isLoggedIn: false,
-// }
+    user.isMarried = true;
+    const updateStatus = await file.update('users', 'maryte.json', user);
+    console.log('Update:', updateStatus);
 
-// const status = file.create('users', 'petras.json', user);
+    const readStatus3 = await file.read('users', 'maryte.json');
+    console.log('Read:', readStatus3);
 
-// const apiStatus = await fetch('');
+    const deleteStatus = await file.delete('users', 'maryte.json');
+    console.log('Delete:', deleteStatus);
 
-// if (apiStatus) 
+    const readStatus4 = await file.read('users', 'maryte.json');
+    console.log('Read:', readStatus4);
+
+})();
